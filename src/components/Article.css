@@ -1,0 +1,31 @@
+.normal {
+	margin:5px 0;
+
+}
+.article_title{
+	font-size: 2.2em;
+    font-weight: lighter;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.3s;
+	-moz-transition: color 0.3s; /* Firefox 4 */
+	-webkit-transition: color 0.3s; /* Safari 和 Chrome */
+	-o-transition: color 0.3s; /* Opera */
+}
+.article_title:hover{
+	color: #BF1827;
+}
+
+.article_summary{
+	font-size: 1.2em;
+    color: #888;
+    line-height: 1.7em;
+    vertical-align: baseline;
+}
+
+.post_divider{
+  width: 40%;
+  margin: 2.2em 0 2.1em 0;
+  border-top: 1px solid #DDDDDD;
+}

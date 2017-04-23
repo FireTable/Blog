@@ -1,0 +1,10 @@
+::selection {
+    background: #f39ca4;
+}
+
+::-moz-selection {
+    background: #f39ca4;
+}
+body *{
+	font-family: "微软雅黑";
+}

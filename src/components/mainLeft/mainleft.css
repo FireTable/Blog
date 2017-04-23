@@ -1,0 +1,31 @@
+.normal {
+	height: 100%;
+	padding-top: 70px;
+	overflow: hidden;
+}
+.avatar{
+	width: 80px;
+	height: 80px;
+	background-size: 120px;
+	border-radius: 40px;
+}
+
+.menuStyle{
+	display: inline-block;
+	width: auto;
+	background: none;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 1.5em;
+}
+.menuStyle *{
+	padding-top:10px; 
+	color: #FFF !important;
+}
+.navigationSocial>a{
+	margin:10px;
+	color: #CCC;
+}
+.navigationSocial{
+	margin-top:10px;
+}

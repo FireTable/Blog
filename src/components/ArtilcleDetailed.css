@@ -1,0 +1,13 @@
+.normal{
+	
+}
+
+.close{
+	position: fixed;
+	top:0;
+	right: 16px;
+	font-size: 45px;
+	color:#CCC;
+	background-color: rgba(0,0,0,0.2);
+	cursor: pointer;
+}

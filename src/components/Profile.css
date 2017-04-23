@@ -1,0 +1,41 @@
+.normal * {
+	font-family: "微软雅黑";
+    color: #FFF;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    font-weight: lighter;
+}
+.normal h1{
+	font-size: 2.8em;
+	font-weight: lighter;
+}
+.normal span{
+	letter-spacing: 3px;
+	font-size: 1.5em;
+  	color: #CCCCCC;
+}
+.normal p{
+	line-height: 1.7em;
+	font-size: 1.3em;
+}
+
+.normal img{
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+  	border: 3px solid #FFF;
+  	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+.normal {
+	width: auto;
+	max-width: 700px;
+	min-width: 200px;
+	padding: 10px 50px;
+	margin: 0 auto
+}
+
+.panel_divider {
+  width: 50%;
+  margin: 20px auto;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}

@@ -1,0 +1,16 @@
+.article_timeAnd_tag{
+	margin-top:10px;
+}
+.article_timeAnd_tag>strong{
+	margin-right: 10px;
+	color: #999;
+}
+.article_time{
+	font-size: 1.1em;
+	margin-right: 20px;
+    color: #AAA;
+}
+.article_tag{
+	font-size: 1.1em;
+    color: #AAA;
+}

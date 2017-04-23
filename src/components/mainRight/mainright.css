@@ -1,0 +1,6 @@
+.normal {
+	height: 100%;
+	overflow: auto;
+	padding: 50px 7%;
+	background-color: rgba(255,255,255,0.8);
+}

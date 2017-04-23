@@ -1,0 +1,31 @@
+.normal *{
+	font-size: 14px;
+}
+.cardBottom,.childReplys{
+	width: 100%;
+	position:relative;
+	top:20px;
+}
+.cardBottom{
+	height: 30px;
+	line-height: 30px;
+	border-top: 1px solid #DDD;
+}
+.childReplys{
+	padding: 2px;
+	border: 1px solid #DDD;
+	background-color: #EEE;
+}
+.childReplys>div:last-child{
+	margin-bottom: 0 !important;
+}
+.cardBottom a{
+	margin-right: 10px;
+	font-size: 10px;
+}
+.cardBottom a:hover{
+	text-decoration: underline;
+}
+.normal a{
+	color:#000;
+}
