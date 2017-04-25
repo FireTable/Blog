@@ -1,3 +1,27 @@
 
 .normal {
 }
+.timeline{
+	list-style: none;
+	position: relative;
+    margin-top: 35px;
+    padding-top: 35px;
+    padding-bottom: 70px;
+}
+.timeline:before{
+	top: 0;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 10px;
+    background-color: #DDD;
+    left: 50%;
+    margin-left: -5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.timeline li{
+    overflow: hidden;
+    margin-bottom: 20px;
+}

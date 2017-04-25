@@ -32,10 +32,8 @@ const registerModel = (app, model) => {
  */
 const urlPretreatment = (history,app) => {
   history.listen(location => {
-    if (location.pathname.indexOf('/blog') !== -1||
-      location.pathname.indexOf('/message') !== -1||
-      location.pathname.indexOf('/blogroll') !== -1) {
-      app._store.dispatch({type: 'app/hideIndexPage'});
+    if (location.pathname==="/") {
+      app._store.dispatch({type: 'app/showIndexPage'});
     }
     if (location.pathname.indexOf('/blog/article') !== -1) {
       const pathname=location.pathname
@@ -80,6 +78,7 @@ const Routers = function ({ history, app }) {
         name: 'Message',
         getComponent (nextState, cb) {
           require.ensure([], require => {
+            registerModel(app, require('./models/message'))
             cb(null, require('./routes/Message'))
           }, 'Message')
         },

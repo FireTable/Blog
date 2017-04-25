@@ -55,7 +55,7 @@ class Blogroll extends Component {
 		return (
 	    <div className={styles.normal}>
       {Blogrolls.length===0
-        ?<div style={{textAlign:'center',marginTop:'30%'}}><Spin size="large"/></div>
+        ?<div style={{textAlign:'center',marginTop:'5%'}}><Spin size="large"/></div>
         :<div className={styles.normal}>
           {Blogrolls.hasOwnProperty('message')
             ?<h1 style={{textAlign:'center'}}>暂无友情链接</h1>

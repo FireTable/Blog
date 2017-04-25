@@ -14,10 +14,10 @@ const CommentForm = Form.create()(
       <Form style={{textAlign:'left'}}>
         <Row gutter={16}>
           <Col span={8}>
-            <FormItem label="姓名">
+            <FormItem label="昵称">
               {getFieldDecorator('commneterName', {
                 rules: [
-                  { required: true, message: '请输入姓名' },
+                  { required: true, message: '请输入昵称' },
                   { max: 10, message: '最多输入10个字'}
                 ],
               })(

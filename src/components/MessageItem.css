@@ -1,0 +1,53 @@
+.normal {
+	text-align: left;
+  height: auto;
+  overflow: hidden;
+  position: relative;/*用来给头像img做父定位*/
+}
+.panel{
+	position: relative;
+	padding: 20px;
+	width: 43%;
+	background-color: #FFF;
+}
+.leftArrow,.rightArrow{
+	position:absolute;
+	top: 35px;
+	display: block;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+.leftArrow{
+	left: -30px;
+	border-left: 15px solid transparent;
+  border-right: 15px solid #FFF;
+}
+.rightArrow{
+	right: -30px;
+  border-right: 15px solid transparent;
+	border-left: 15px solid #FFF;
+}
+.headImg{
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	margin-left: -30px;
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+	border:5px solid #DDD;
+}
+.title{
+	color: #108ee9;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+.time{
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+.content{
+	color: #555;
+	font-size: 14px;
+	margin-bottom: 10px;
+}

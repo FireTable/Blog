@@ -5,7 +5,7 @@ export default {
   namespace: 'app',
 
   state: {
-    isIndex:true,
+    isIndex:false,
   },
 
   subscriptions: {
