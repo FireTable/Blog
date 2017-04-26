@@ -8,10 +8,10 @@
 ## 在线地址
 [长寿程序员的家--四藏经库](http://wuyunjiang.cn)
 ## 涉及知识点
-[Redux](http://redux.js.org/):JavaScript 状态容器，提供可预测化的状态管理.
-[ReactJS](https://facebook.github.io/react/):用来构建用户界面的JavaScript库
-[Dva](https://github.com/dvajs/dva/):基于 redux、redux-saga 和 react-router的轻量级前端框架。
-[Ant.Design](https://ant.design/index-cn): UI 设计语言，整合了一些组件，使用起来相当方便
-[Express](http://expressjs.com/zh-cn/):高度包容、快速而极简的 Node.js Web 框架
+- [Redux](http://redux.js.org/):JavaScript 状态容器，提供可预测化的状态管理.
+- [ReactJS](https://facebook.github.io/react/):用来构建用户界面的JavaScript库
+- [Dva](https://github.com/dvajs/dva/):基于 redux、redux-saga 和 react-router的轻量级前端框架。
+- [Ant.Design](https://ant.design/index-cn): UI 设计语言，整合了一些组件，使用起来相当方便
+- [Express](http://expressjs.com/zh-cn/):高度包容、快速而极简的 Node.js Web 框架
 
 服务器环境：CentOS+Nginx+MySQl
