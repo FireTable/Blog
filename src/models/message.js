@@ -1,9 +1,9 @@
-import { getOnePageMessage } from '../services/message'
+import { getOnePageMessage,submitMessage } from '../services/message'
 import { parse } from 'qs'
 
 export default {
 
-  namespace: 'message',
+  namespace: 'mymessage',
 
   state: {
     list:[],
@@ -21,27 +21,28 @@ export default {
   },
 
   effects: {
-    // * getOnePageMessage(action,{call,put}) { // eslint-disable-line
-    //   const data = yield call(getOnePageMessage)
-    //   if (data) {
-    //     yield put({
-    //       type: 'changeState',
-    //       payload: {
-    //         list:data
-    //       },
-    //     })
-    //   }
-    // },
+    * submitMessage({ payload,hide }, { call, put }) { // eslint-disable-line
+      const data = yield call(submitMessage, parse(payload))
+      if (data) {
+        yield put({
+          type: 'addMessage',
+          payload: {
+            Message:data
+          },
+        })
+        hide();
+      }
+    },
     * getOnePageMessage({ payload }, { call, put }) { // eslint-disable-line
       const data = yield call(getOnePageMessage, parse(payload))
       if (data) {
         yield put({
-          type: 'changeState',
+          type: 'loadMessages',
           payload: {
             list:data.data,
             pageInfo:{
               currentPage:data.currentPage,
-              totlle:data.totle
+              totle:data.totle
             }
           },
         })
@@ -50,9 +51,16 @@ export default {
   },
 
   reducers: {
-    changeState(state, action) {
+    loadMessages(state, action) {
+      const list=state.list.concat(action.payload.list)
       return { ...state,
-        ...action.payload
+        list:list,
+        pageInfo:action.payload.pageInfo
+      }
+    },
+    addMessage(state, action) {
+      state.list.unshift(action.payload.Message)
+      return { ...state
       }
     },
   },

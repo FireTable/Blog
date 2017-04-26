@@ -8,7 +8,6 @@ function error( ) {
     	<h1 style={{textAlign:'center'}}>Error 404</h1><br/>
     	<p style={{textAlign:'center'}}>没有这个页面耶 玩会儿游戏吧</p><br/>
       <object
-      	autofouce={true}	
       	height='500'
       	width='800'>
       	<param 
@@ -16,7 +15,6 @@ function error( ) {
       		width='800'
       		value={btmao}></param>
       	<embed
-      		autofouce={true}
 	      	height='500'
 	      	width='800'
       		src={btmao}

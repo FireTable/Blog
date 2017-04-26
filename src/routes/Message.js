@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Timeline,Icon,Spin,Button,BackTop } from 'antd'
+import { Timeline,Icon,Spin,Button,message,BackTop,notification  } from 'antd'
 import styles from './Message.css';
 import MessageForm from '../components/MessageForm'
 import MessageItem from '../components/MessageItem'
@@ -9,7 +9,7 @@ class myMessage extends Component {
 
 	loadArticles(nextPage){
     this.props.dispatch({
-      type:'message/getOnePageMessage',
+      type:'mymessage/getOnePageMessage',
       payload:{
       	nextPage:nextPage
       }
@@ -21,19 +21,32 @@ class myMessage extends Component {
   }
 
   submitMessage(FormData,btnLoaded){
-  	console.log(FormData)
+  	const hide = message.loading('评论中...', 0);
   	this.props.dispatch({
-      type:'message/submitMessage',
+      type:'mymessage/submitMessage',
       payload: {
       	...FormData
       },
-      btnLoaded:btnLoaded,
+      hide:hide
     })
+  }
+
+  More(){
+  	if (this.props.messageState.list.length===this.props.messageState.pageInfo.totle) {
+  		notification.open({
+		    message: '暂无更多评论',
+		    duration: 2
+		  });
+		  return;
+  	}
+  	this.loadArticles(this.props.messageState.pageInfo.currentPage+1)
   }
 
 	constructor(props) {
 	  super(props);
-	  this.state = {};
+	  this.state = {
+	  	
+	  };
 	}
 
 	render(){
@@ -46,7 +59,7 @@ class myMessage extends Component {
 		}
 		return (
 	    <div className={styles.normal}>
-	    	<BackTop visibilityHeight="400">UP</BackTop>
+	    	<BackTop visibilityHeight="400" target={()=>this}/>
 			  <div>
 			  	<MessageForm
 			  		{ ...MessageFormProps }/>
@@ -62,7 +75,7 @@ class myMessage extends Component {
 	              	</li>
 	            )})}
 	            <li style={{marginTop:'40px'}}>
-	            	<Button>加载更多...</Button>
+	            	<Button onClick={()=>{this.More()}}>加载更多...</Button>
 	            </li>
 	        </ul>}
 			  </div>
@@ -71,9 +84,9 @@ class myMessage extends Component {
 	}
 }
 
-function mapStateToProps({ message }) {
+function mapStateToProps({ mymessage }) {
   return {
-  	messageState:message
+  	messageState:mymessage
   };
 }
 

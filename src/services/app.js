@@ -1,8 +1,10 @@
 import request from '../utils/request'
+import {serverInfo} from '../utils/serverConf'
 
 export async function queryOnePage (params) {
+  console.log(serverInfo)
   return request({
-    url:'http://127.0.0.1:3005/blog/queryOnePage',
+    url:'http://'+serverInfo.ServerIp+'/blog/queryOnePage',
     method: 'post',
     headers: {
       'Content-Type': 'application/json'
@@ -14,7 +16,7 @@ export async function queryOnePage (params) {
 
 export async function byIdGetDetailed (params) {
   return request({
-    url:'http://127.0.0.1:3005/blog/byIdGetDetailed',
+    url:'http://'+serverInfo.ServerIp+'/blog/byIdGetDetailed',
     method: 'post',
     headers: {
       'Content-Type': 'application/json'
@@ -27,7 +29,7 @@ export async function byIdGetDetailed (params) {
 
 export async function byIdGetComments (params) {
   return request({
-    url:'http://127.0.0.1:3005/blog/byIdGetComments',
+    url:'http://'+serverInfo.ServerIp+'/blog/byIdGetComments',
     method: 'post',
     headers: {
       'Content-Type': 'application/json'
@@ -38,7 +40,7 @@ export async function byIdGetComments (params) {
 
 export async function byIdGetReplys (params) {
   return request({
-    url:'http://127.0.0.1:3005/blog/byIdGetReplys',
+    url:'http://'+serverInfo.ServerIp+'/blog/byIdGetReplys',
     method: 'post',
     headers: {
       'Content-Type': 'application/json'
@@ -50,7 +52,7 @@ export async function byIdGetReplys (params) {
 export async function submitComment (params) {
   let commentType=params.CommentDate.type==="reply"?"submitReply":"submitComment"
   return request({
-    url:'http://127.0.0.1:3005/blog/'+commentType,
+    url:'http://'+serverInfo.ServerIp+'/blog/'+commentType,
     method: 'post',
     headers: {
       'Content-Type': 'application/json'

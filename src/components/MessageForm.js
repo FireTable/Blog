@@ -19,7 +19,7 @@ const MyForm = Form.create()(
             <Input 
               type="textarea" 
               placeholder="真知灼见，惜字如金" 
-              style={{height:'100px',resize:'none'}}/>
+              style={{height:'150px',resize:'none'}}/>
           )}
         </FormItem>
         <Row gutter={16}>
@@ -52,7 +52,7 @@ const MyForm = Form.create()(
               <Button onClick={reset} size='large' style={{width:'100%'}}>重置</Button>
             </Col>
             <Col span={11} offset={2}>
-              <Button ref="submit" type="primary" size='large' style={{width:'100%'}} onClick={handleSubmit}>提交</Button>
+              <Button type="primary" size='large' style={{width:'100%'}} onClick={handleSubmit}>提交</Button>
             </Col>
           </Col>
         </Row>
@@ -74,21 +74,13 @@ export default function BlogrollForm( Props ) {
     thisState.form.resetFields();
   }
 
-  const btnLoading = () => {
-    
-  }
-  const btnLoaded = () => {
-
-  }
-
   const handleSubmit = () => {
     const form = thisState.form
     form.validateFields((err, values) => {
       if (err) {
         return
       }
-      Props.submitMessage(values,btnLoaded.bind(this))
-      btnLoading()
+      Props.submitMessage(values)
       form.resetFields();
     });
   }

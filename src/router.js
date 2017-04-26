@@ -3,12 +3,14 @@ import { Router } from 'dva/router'
 
 
 import IndexPage from './routes/IndexPage';
-
 import Blog from "./routes/Blog";
-
 import Message from "./routes/Message";
-
 import Blogroll from "./routes/Blogroll";
+
+//admin
+import adminIndex from './routes/admin/adminIndex'
+
+
 
 //      https://github.com/dvajs/dva/issues/533
 //      由于 dva@1.2 中引入了 app.unmodel 以及为 app.model 增加了冲突校验，不允许
@@ -53,7 +55,14 @@ const urlPretreatment = (history,app) => {
 const Routers = function ({ history, app }) {
   urlPretreatment(history,app);
   const routes = [{
-      path: '/',
+      path: 'admin',
+      name: 'adminIndex',
+      component: adminIndex,
+      childRoutes: [{
+        
+      }
+      ]
+    },{ path: '/',
       name: 'IndexPage',
       component: IndexPage,
       childRoutes: [{
@@ -100,7 +109,7 @@ const Routers = function ({ history, app }) {
           }, 'error')
         },
       }]
-    },
+    }
   ]
 
   return <Router history={history} routes={routes} />;

@@ -1,8 +1,9 @@
 import request from '../utils/request'
+import {serverInfo} from '../utils/serverConf'
 
 export async function getOnePageMessage (params) {
   return request({
-    url:'http://127.0.0.1:3005/message/getOnePageMessage',
+    url:'http://'+serverInfo.ServerIp+'/message/getOnePageMessage',
     method: 'post',
     headers: {
       'Content-Type': 'application/json'
@@ -11,9 +12,9 @@ export async function getOnePageMessage (params) {
   })
 }
 
-export async function submitBlogrollApply(params) {
+export async function submitMessage(params) {
   return request({
-    url:'http://127.0.0.1:3005/blogroll/submitBlogrollApply',
+    url:'http://'+serverInfo.ServerIp+'/message/submitMessage',
     method: 'post',
     headers: {
       'Content-Type': 'application/json'

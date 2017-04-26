@@ -1,8 +1,9 @@
 import request from '../utils/request'
+import {serverInfo} from '../utils/serverConf'
 
 export async function getAllBlogroll () {
   return request({
-    url:'http://127.0.0.1:3005/blogroll/getAllBlogroll',
+    url:'http://'+serverInfo.ServerIp+'/blogroll/getAllBlogroll',
     method: 'get',
     headers: {
       'Content-Type': 'application/json'
@@ -12,7 +13,7 @@ export async function getAllBlogroll () {
 
 export async function submitBlogrollApply(params) {
   return request({
-    url:'http://127.0.0.1:3005/blogroll/submitBlogrollApply',
+    url:'http://'+serverInfo.ServerIp+'/blogroll/submitBlogrollApply',
     method: 'post',
     headers: {
       'Content-Type': 'application/json'
