@@ -1,48 +1,62 @@
 import React from 'react';
-import { Layout, Menu, Icon } from 'antd';
-const { Header, Content, Footer, Sider } = Layout;
+import { connect } from 'dva';
+import styles from './adminIndex.css';
+import { Spin } from 'antd'
 
-function adminIndex( ) {
-  return (
-    <Layout>
-  <Sider
-    breakpoint="lg"
-    collapsedWidth="0"
-    onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
-  >
-    <div className="logo" />
-    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
-      <Menu.Item key="1">
-        <Icon type="user" />
-        <span className="nav-text">nav 1</span>
-      </Menu.Item>
-      <Menu.Item key="2">
-        <Icon type="video-camera" />
-        <span className="nav-text">nav 2</span>
-      </Menu.Item>
-      <Menu.Item key="3">
-        <Icon type="upload" />
-        <span className="nav-text">nav 3</span>
-      </Menu.Item>
-      <Menu.Item key="4">
-        <Icon type="user" />
-        <span className="nav-text">nav 4</span>
-      </Menu.Item>
-    </Menu>
-  </Sider>
-  <Layout>
-    <Header style={{ background: '#fff', padding: 0 }} />
-    <Content style={{ margin: '24px 16px 0' }}>
-      <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-        content
-      </div>
-    </Content>
-    <Footer style={{ textAlign: 'center' }}>
-      Ant Design ©2016 Created by Ant UED
-    </Footer>
-  </Layout>
-</Layout>
+import Login from '../../components/admin/Login'
+import { Layout } from '../../components/admin'
+const { Header, Footer, Sider, Bread } = Layout
+
+function adminIndex ({ children, location, dispatch, adminState }) {
+
+  const { isLogin } = adminState
+
+  const logout = () => {
+    console.log("ddd")
+    // dispatch({ type: 'app/logout' })
+  }
+
+  const loginProps = {
+
+  }
+  const siderProps = {
+    location:location,
+    siderFold:adminState.siderFold1
+  }
+  const headerProps = {
+    user:adminState.user,
+    location:location,
+    logout:logout
+  }
+	return (
+    <div>
+    	{isLogin
+      ?<div className={styles.pageLayout}>
+        <aside className={styles.sider}>
+          <Sider {...siderProps} />
+        </aside>
+        <div className={styles.mainBody}>
+          <Header {...headerProps} />
+          <Bread location={location} />
+          <div>
+            {children}
+          </div>
+          <Footer />
+        </div>
+      </div> 
+      :<div>
+        <Spin tip="加载用户信息..." spinning={false} size="large">
+          <Login {...loginProps} />
+        </Spin>
+      </div>}
+    </div>  
   );
 }
 
-export default adminIndex;
+function mapStateToProps({ admin }) {
+  return {
+  	adminState:admin
+  };
+}
+
+export default connect(mapStateToProps)(adminIndex);

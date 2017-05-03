@@ -182,6 +182,7 @@ export default class Comment extends Component {
     const thisState={
       comments:this.props.comments,
     }
+    console.log(CommentForm)
     return (
       <div id="CommentForm" className={styles.normal}>
         <Card title="文 章 评 论" style={{textAlign:'left'}} > 

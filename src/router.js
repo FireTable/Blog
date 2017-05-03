@@ -18,12 +18,12 @@ import adminIndex from './routes/admin/adminIndex'
 //      以很多人升级到 1.2 时就出错了。典型出错
 const cached = {}
 const registerModel = (app, model) => {
-  if (!cached[model.namespace]) {
-    app.model(model)
-    cached[model.namespace] = 1
+    if (!cached[model.namespace]) {
+      app.model(model)
+      cached[model.namespace] = 1
+    }
   }
-}
-///**********************************************************************
+  ///**********************************************************************
 
 
 /**
@@ -32,18 +32,18 @@ const registerModel = (app, model) => {
  * @param  {[type]} app     [description]
  * @return {[type]}         [description]
  */
-const urlPretreatment = (history,app) => {
+const urlPretreatment = (history, app) => {
   history.listen(location => {
-    if (location.pathname==="/") {
-      app._store.dispatch({type: 'app/showIndexPage'});
+    if (location.pathname === "/") {
+      app._store.dispatch({ type: 'app/showIndexPage' });
     }
     if (location.pathname.indexOf('/blog/article') !== -1) {
-      const pathname=location.pathname
+      const pathname = location.pathname
       app._store.dispatch({
         type: 'article/changeState',
         payload: {
-          isDetailed:true,
-          currentArticleID:pathname.substring(pathname.indexOf('/article')+9)
+          isDetailed: true,
+          currentArticleID: pathname.substring(pathname.indexOf('/article') + 9)
         }
       });
     }
@@ -52,67 +52,98 @@ const urlPretreatment = (history,app) => {
 
 
 
-const Routers = function ({ history, app }) {
-  urlPretreatment(history,app);
+const Routers = function({ history, app }) {
+  urlPretreatment(history, app);
   const routes = [{
-      path: 'admin',
-      name: 'adminIndex',
-      component: adminIndex,
+    path: 'admin',
+    name: 'adminIndex',
+    getComponent(nextState, cb) {
+      require.ensure([], require => {
+        registerModel(app, require('./models/admin/admin'))
+        cb(null, require('./routes/admin/adminIndex'))
+      }, 'article')
+    },
+    childRoutes: [{
+      path: 'blogManage',
+      name: 'blogManage',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          // registerModel(app, require('./models/admin/blogManage'))
+          cb(null, require('./routes/admin/blogManage'))
+        }, 'blogManage')
+      },
+    }, {
+      path: 'messageManage',
+      name: 'messageManage',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          // registerModel(app, require('./models/messageManage'))
+          cb(null, require('./routes/admin/messageManage'))
+        }, 'messageManage')
+      },
+    },{
+      path: 'dashboard',
+      name: 'dashboard',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          // registerModel(app, require('./models/admin/blogManage'))
+          cb(null, require('./routes/admin/dashboard'))
+        }, 'dashboard')
+      },
+    }]
+  }, {
+    path: '/',
+    name: 'IndexPage',
+    component: IndexPage,
+    childRoutes: [{
+      path: 'Blog',
+      name: 'Blog',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          cb(null, require('./routes/Blog'))
+        }, 'Blog')
+      },
       childRoutes: [{
-        
-      }
-      ]
-    },{ path: '/',
-      name: 'IndexPage',
-      component: IndexPage,
-      childRoutes: [{
-        path: 'Blog',
-        name: 'Blog',
-        getComponent (nextState, cb) {
+        path: 'article/:articleID',
+        name: 'article',
+        getComponent(nextState, cb) {
           require.ensure([], require => {
             cb(null, require('./routes/Blog'))
-          }, 'Blog')
-        },
-        childRoutes: [{
-          path: 'article/:articleID',
-          name: 'article',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              cb(null, require('./routes/Blog'))
-            }, 'article')
-          },
-        }]
-      }, {
-        path: 'Message',
-        name: 'Message',
-        getComponent (nextState, cb) {
-          require.ensure([], require => {
-            registerModel(app, require('./models/message'))
-            cb(null, require('./routes/Message'))
-          }, 'Message')
-        },
-      },{
-        path: 'Blogroll',
-        name: 'Blogroll',
-        getComponent (nextState, cb) {
-          require.ensure([], require => {
-            registerModel(app, require('./models/blogroll'))
-            cb(null, require('./routes/Blogroll'))
-          }, 'Blogroll')
-        },
-      },{
-        path: '*',
-        name: 'error',
-        getComponent (nextState, cb) {
-          require.ensure([], require => {
-            cb(null, require('./routes/error'))
-          }, 'error')
+          }, 'article')
         },
       }]
-    }
-  ]
+    }, {
+      path: 'Message',
+      name: 'Message',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          registerModel(app, require('./models/message'))
+          cb(null, require('./routes/Message'))
+        }, 'Message')
+      },
+    }, {
+      path: 'Blogroll',
+      name: 'Blogroll',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          registerModel(app, require('./models/blogroll'))
+          cb(null, require('./routes/Blogroll'))
+        }, 'Blogroll')
+      },
+    }, {
+      path: '*',
+      name: 'error',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          cb(null, require('./routes/error'))
+        }, 'error')
+      },
+    }]
+  }]
 
-  return <Router history={history} routes={routes} />;
+  return <Router history = { history }
+  routes = { routes }
+  />;
 }
 
 Routers.propTypes = {
@@ -140,4 +171,3 @@ export default Routers
 //     </Router>
 //   );
 // }
-
